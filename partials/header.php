@@ -22,8 +22,9 @@
 		</div>
 		<nav class="row">
 			<ul class="nav nav-pills">
-				<li class="active"><a href="#">Categories</a></li>
-				<li><a href="#">Articles</a></li>
+				<li class="active"><a href="<?php $_SERVER["SERVER_NAME"] ?>/">Home</a></li>
+				<li><a href="<?php $_SERVER["SERVER_NAME"] ?>/categories.php">Categories</a></li>
+				<li><a href="<?php $_SERVER["SERVER_NAME"] ?>/products.php">Products</a></li>
 				<li><a href="#">Search</a></li>
 			</ul>
 		</nav>
