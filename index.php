@@ -1,3 +1,5 @@
+<?php require_once 'config.php'; ?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -39,11 +41,21 @@
                         </ul>
                     </li>
                 </ul>
+<<<<<<< d26df3a0eae3f60d25cc5f59bef99ad83348a269
             </sidebar>
             <section class="col-sm-8">
                 <p>It is October 19th, 2016, 10:29 AM</p>
             </section>
         </div>
+=======
+            </li>
+        </ul>
+    </sidebar>
+    <main>
+        <section>
+            <p>It is <?php echo date("Y-m-d H:i:s") ?></p>
+        </section>
+>>>>>>> created config.php
     </main>
     <footer class="container">
         <p>European Code Week, Osijek, October 19th 2016</p>
