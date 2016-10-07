@@ -1,4 +1,7 @@
+<?php require_once 'credentials.php'; ?>
 <?php require_once 'config.php'; ?>
+
+<?php $conn = connect2db($credentials); ?>
 
 <!doctype html>
 <html lang="en">
