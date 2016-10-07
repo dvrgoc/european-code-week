@@ -25,7 +25,7 @@
 		</div>
 		<nav class="container">
 			<ul class="nav nav-pills">
-				<li<?php echo (strpos($_SERVER["REQUEST_URI"], "index.php") !== false) ? ' class="active"' : '' ?>>
+				<li<?php echo (strpos($_SERVER["REQUEST_URI"], "/") !== false) ? ' class="active"' : '' ?>>
 					<a href="<?php $_SERVER["SERVER_NAME"] ?>/">Home</a>
 				</li>
 				<li<?php echo (strpos($_SERVER["REQUEST_URI"], "categories.php") !== false) ? ' class="active"' : '' ?>>
