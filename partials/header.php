@@ -22,9 +22,16 @@
 		</div>
 		<nav class="row">
 			<ul class="nav nav-pills">
-				<li class="active"><a href="<?php $_SERVER["SERVER_NAME"] ?>/">Home</a></li>
-				<li><a href="<?php $_SERVER["SERVER_NAME"] ?>/categories.php">Categories</a></li>
-				<li><a href="<?php $_SERVER["SERVER_NAME"] ?>/products.php">Products</a></li>
+				<?php // var_dump($_SERVER) ?>
+				<li<?php echo $_SERVER["REQUEST_URI"] === "/" ? ' class="active"' : '' ?>>
+					<a href="<?php $_SERVER["SERVER_NAME"] ?>/">Home</a>
+				</li>
+				<li<?php echo $_SERVER["REQUEST_URI"] === "/categories.php" ? ' class="active"' : '' ?>>
+					<a href="<?php $_SERVER["SERVER_NAME"] ?>/categories.php">Categories</a>
+				</li>
+				<li<?php echo $_SERVER["REQUEST_URI"] === "/products.php" ? ' class="active"' : '' ?>>
+					<a href="<?php $_SERVER["SERVER_NAME"] ?>/products.php">Products</a>
+				</li>
 				<li><a href="#">Search</a></li>
 			</ul>
 		</nav>
