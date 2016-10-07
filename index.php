@@ -6,6 +6,11 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Homepage</title>
+
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.css">
+
+
 </head>
 <body>
     <header>
@@ -38,5 +43,8 @@
         <p>European Code Week, Osijek, October 19th 2016</p>
         <p><a href="mailto:danijel.vrgoc@inchoo.net">danijel.vrgoc@inchoo.net</a></p>
     </footer>
+
+    <script src="js/jquery-3.1.1.js"></script>
+    <script src="js/bootstrap.js"></script>
 </body>
 </html>
