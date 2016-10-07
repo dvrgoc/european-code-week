@@ -25,14 +25,13 @@
 		</div>
 		<nav class="container">
 			<ul class="nav nav-pills">
-				<?php // var_dump($_SERVER) ?>
-				<li<?php echo $_SERVER["REQUEST_URI"] === "/" ? ' class="active"' : '' ?>>
+				<li<?php echo (strpos($_SERVER["REQUEST_URI"], "index.php") !== false) ? ' class="active"' : '' ?>>
 					<a href="<?php $_SERVER["SERVER_NAME"] ?>/">Home</a>
 				</li>
-				<li<?php echo $_SERVER["REQUEST_URI"] === "/categories.php" ? ' class="active"' : '' ?>>
+				<li<?php echo (strpos($_SERVER["REQUEST_URI"], "categories.php") !== false) ? ' class="active"' : '' ?>>
 					<a href="<?php $_SERVER["SERVER_NAME"] ?>/categories.php">Categories</a>
 				</li>
-				<li<?php echo $_SERVER["REQUEST_URI"] === "/products.php" ? ' class="active"' : '' ?>>
+				<li<?php echo (strpos($_SERVER["REQUEST_URI"], "products.php") !== false)  ? ' class="active"' : '' ?>>
 					<a href="<?php $_SERVER["SERVER_NAME"] ?>/products.php">Products</a>
 				</li>
 				<li><a href="#">Search</a></li>

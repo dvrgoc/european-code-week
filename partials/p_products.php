@@ -1,6 +1,6 @@
 <?php
 $single_product = false;
-if (isset($_GET["id"]) && !empty($_GET["id"]) && is_numeric($_GET["id"])) {
+if (isset($_GET['id']) && !empty($_GET['id']) && is_numeric($_GET['id'])) {
 	$single_product = true;
 }
 ?>
@@ -28,7 +28,7 @@ if (isset($_GET["id"]) && !empty($_GET["id"]) && is_numeric($_GET["id"])) {
 					<ul>
 						<?php foreach ($products as $product): ?>
 							<li>
-								<a href="?id=<?php echo $product["id"] ?>"><?php echo $product["title"] ?></a>
+								<a href="?id=<?php echo $product['id'] ?>"><?php echo $product['title'] ?></a>
 							</li>
 						<?php endforeach; ?>
 					</ul>
@@ -38,7 +38,9 @@ if (isset($_GET["id"]) && !empty($_GET["id"]) && is_numeric($_GET["id"])) {
 			</div>
 			<div role="tabpanel" class="tab-pane" id="new">2</div>
 			<?php else: ?>
-			<div role="tabpanel" class="tab-pane active" id="edit">3</div>
+			<div role="tabpanel" class="tab-pane active" id="edit">
+				<?php echo $_GET['id'] ?>
+			</div>
 			<div role="tabpanel" class="tab-pane" id="delete">4</div>
 			<?php endif ?>
 		</div>
