@@ -14,13 +14,13 @@
 	<link rel="stylesheet" href="css/ecw.css">
 </head>
 <body class="container-fluid">
-	<header class="container">
-		<div class="row">
+	<header class="row">
+		<div class="container">
 			<a class="logo" href="/" title="Logo">
 				<img src="images/codeweekeu.png" alt="Europe Code Week"/>
 			</a>
 		</div>
-		<nav class="row">
+		<nav class="container">
 			<ul class="nav nav-pills">
 				<?php // var_dump($_SERVER) ?>
 				<li<?php echo $_SERVER["REQUEST_URI"] === "/" ? ' class="active"' : '' ?>>
@@ -36,5 +36,5 @@
 			</ul>
 		</nav>
 	</header>
-	<div class="container">
-		<div class="row">
+	<div class="row">
+		<div class="container">
