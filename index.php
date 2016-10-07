@@ -9,37 +9,43 @@
 
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/bootstrap-theme.css">
-
-
+    <link rel="stylesheet" href="css/ecw.css">
 </head>
-<body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="#">Categories</a></li>
+<body class="container-fluid">
+    <header class="container">
+        <div class="row">
+            <a class="logo" href="/" title="Logo">
+                <img src="images/codeweekeu.png" alt="Europe Code Week" />
+            </a>
+        </div>
+        <nav class="row">
+            <ul class="nav nav-pills">
+                <li class="active"><a href="#">Categories</a></li>
                 <li><a href="#">Articles</a></li>
                 <li><a href="#">Search</a></li>
             </ul>
         </nav>
     </header>
-    <sidebar>
-        <ul>
-            <li><p>Parent Category</p></li>
-            <li>
-                <p>Parent Category</p>
+    <main class="container">
+        <div class="row">
+            <sidebar class="col-sm-4">
                 <ul>
-                    <li><p>Child Category</p></li>
-                    <li><p>Child Category</p></li>
+                    <li><p>Parent Category</p></li>
+                    <li>
+                        <p>Parent Category</p>
+                        <ul>
+                            <li><p>Child Category</p></li>
+                            <li><p>Child Category</p></li>
+                        </ul>
+                    </li>
                 </ul>
-            </li>
-        </ul>
-    </sidebar>
-    <main>
-        <section>
-            <p>It is October 19th, 2016, 10:29 AM</p>
-        </section>
+            </sidebar>
+            <section class="col-sm-8">
+                <p>It is October 19th, 2016, 10:29 AM</p>
+            </section>
+        </div>
     </main>
-    <footer>
+    <footer class="container">
         <p>European Code Week, Osijek, October 19th 2016</p>
         <p><a href="mailto:danijel.vrgoc@inchoo.net">danijel.vrgoc@inchoo.net</a></p>
     </footer>
