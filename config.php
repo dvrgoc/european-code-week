@@ -30,3 +30,14 @@ function connect2db($credentials) {
 function disconnectFromDb($connection) {
 	mysqli_close($connection);
 }
+
+function getAllProducts($connection) {
+	$results = $connection->query('SELECT id, title FROM products ORDER BY title ASC ');
+
+	if($results->num_rows) {
+		/*var_dump("true");*/
+		return mysqli_fetch_all($results, MYSQLI_ASSOC);
+	}
+
+	return false;
+}
