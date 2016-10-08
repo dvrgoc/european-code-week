@@ -2,6 +2,8 @@
 $single_product = false;
 if (isset($_GET['id']) && !empty($_GET['id']) && is_numeric($_GET['id'])) {
 	$single_product = true;
+
+	$product = getProductById($conn, $_GET['id']);
 }
 ?>
 
@@ -10,11 +12,11 @@ if (isset($_GET['id']) && !empty($_GET['id']) && is_numeric($_GET['id'])) {
 		<!-- Nav tabs -->
 		<ul class="nav nav-tabs" role="tablist">
 			<?php if (!$single_product): ?>
-			<li role="presentation" class="active"><a href="#list" aria-controls="list" role="tab" data-toggle="tab">List</a></li>
-			<li role="presentation"><a href="#new" aria-controls="new" role="tab" data-toggle="tab">New</a></li>
+			<li role="presentation" class="active"><a href="#list" aria-controls="list" role="tab" data-toggle="tab">List All Products</a></li>
+			<li role="presentation"><a href="#new" aria-controls="new" role="tab" data-toggle="tab">New Product</a></li>
 			<?php else: ?>
-			<li role="presentation" class="active"><a href="#edit" aria-controls="edit" role="tab" data-toggle="tab">Edit</a></li>
-			<li role="presentation"><a href="#delete" aria-controls="delete" role="tab" data-toggle="tab">Delete</a></li>
+			<li role="presentation" class="active"><a href="#edit" aria-controls="edit" role="tab" data-toggle="tab">Edit Prouduct</a></li>
+			<li role="presentation"><a href="#delete" aria-controls="delete" role="tab" data-toggle="tab">Delete Product</a></li>
 			<?php endif ?>
 		</ul>
 
@@ -36,10 +38,12 @@ if (isset($_GET['id']) && !empty($_GET['id']) && is_numeric($_GET['id'])) {
 					<p>No products found.</p>
 				<?php endif; ?>
 			</div>
-			<div role="tabpanel" class="tab-pane" id="new">2</div>
+			<div role="tabpanel" class="tab-pane" id="new">
+				<?php getProductForm();?>
+			</div>
 			<?php else: ?>
 			<div role="tabpanel" class="tab-pane active" id="edit">
-				<?php echo $_GET['id'] ?>
+				<?php getProductForm($product);?>
 			</div>
 			<div role="tabpanel" class="tab-pane" id="delete">4</div>
 			<?php endif ?>
