@@ -41,3 +41,9 @@ footer {
         height: 50px;
     }
 }
+
+/* notification messages */
+p[class^="bg-"] {
+    padding: 1em;
+    margin: 1em 0;
+}

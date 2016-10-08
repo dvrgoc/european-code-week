@@ -55,8 +55,9 @@ function getProductById($connection, $id) {
 
 function getProductForm($product = null){
 	?>
-	<form action="/products.php" method="post">
-		<input type="hidden" name="id" id="<?php echo $product ? $product['id'] : "" ?>" />
+	<form action="/products.php<?php echo $product ? '?id='.$product['id'] : ''  ?>" method="post">
+		<input type="hidden" name="id" id="id" value="<?php echo $product ? $product['id'] : "" ?>" />
+		<input type="hidden" name="action" id="action" value="<?php echo $product ? "update" : "create" ?>" />
 
 		<div class="form-group">
 			<label for="title">Title</label>
@@ -78,10 +79,50 @@ function getProductForm($product = null){
 			<input type="text" name="promo_price" id="promo_price" value="<?php echo $product ? $product['promo_price'] : null ?>" class="form-control" />
 		</div>
 
-		<button type="button" name="update" id="update" class="btn btn-primary">
+		<button type="submit" class="btn btn-primary">
 			<?php echo $product ? "Update product" : "Save product" ?>
 		</button>
 	</form>
 	<?php
 	return false;
+}
+
+function processProductData($connection, $data) {
+	if ($data['action'] === "create") {
+		$result = $connection->query(
+			'INSERT INTO products (title, short_description, price, promo_price) VALUES
+				("'.$data["title"].'",
+				"'.$data["short_description"].'",
+				"'.$data["price"].'",
+				'.(((float)($data["promo_price"]) > 0) ?
+					$data["promo_price"] :
+					"NULL")
+				);
+
+		if ($result) {
+			return '<p class="bg-success">Product created successfully</p>';
+		} else {
+			return '<p class="bg-danger">Error creating product: '.$connection->error.'</p>';
+		}
+	}
+
+	if ($data['action'] === "update") {
+		$result = $connection->query(
+			'UPDATE products set 
+				title="'.$data["title"].'",
+				short_description="'.$data["short_description"].'",
+				price="'.$data["price"].'",
+				promo_price='.
+					(((float)($data["promo_price"]) > 0) ?
+						$data["promo_price"] :
+						"NULL").'
+				WHERE id='.$data["id"]
+		);
+
+		if ($result) {
+			return '<p class="bg-success">Product updated successfully</p>';
+		} else {
+			return '<p class="bg-danger">Error updating product: '.$connection->error.'</p>';
+		}
+	}
 }

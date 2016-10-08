@@ -1,5 +1,13 @@
 <?php
+
 $single_product = false;
+$update_status = false;
+
+if (isset($_POST) && !empty($_POST['action'])) {
+	var_dump($_POST);
+	$update_status = processProductData($conn, $_POST);
+}
+
 if (isset($_GET['id']) && !empty($_GET['id']) && is_numeric($_GET['id'])) {
 	$single_product = true;
 
@@ -24,6 +32,9 @@ if (isset($_GET['id']) && !empty($_GET['id']) && is_numeric($_GET['id'])) {
 		<div class="tab-content">
 			<?php if (!$single_product): ?>
 			<div role="tabpanel" class="tab-pane active" id="list">
+				<?php if ($update_status): ?>
+					<?php echo $update_status; ?>
+				<?php endif ?>
 				<?php
 				$products = getAllProducts($conn);
 				if ($products): ?>
@@ -43,6 +54,9 @@ if (isset($_GET['id']) && !empty($_GET['id']) && is_numeric($_GET['id'])) {
 			</div>
 			<?php else: ?>
 			<div role="tabpanel" class="tab-pane active" id="edit">
+				<?php if ($update_status): ?>
+					<?php echo $update_status; ?>
+				<?php endif ?>
 				<?php getProductForm($product);?>
 			</div>
 			<div role="tabpanel" class="tab-pane" id="delete">4</div>
