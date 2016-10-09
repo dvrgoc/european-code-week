@@ -4,7 +4,6 @@ $single_product = false;
 $update_status = false;
 
 if (isset($_POST) && !empty($_POST['action'])) {
-	var_dump($_POST);
 	$update_status = processProductData($conn, $_POST);
 }
 
@@ -59,7 +58,9 @@ if (isset($_GET['id']) && !empty($_GET['id']) && is_numeric($_GET['id'])) {
 				<?php endif ?>
 				<?php getProductForm($product);?>
 			</div>
-			<div role="tabpanel" class="tab-pane" id="delete">4</div>
+			<div role="tabpanel" class="tab-pane" id="delete">
+				<?php getDeleteForm($product) ?>
+			</div>
 			<?php endif ?>
 		</div>
 

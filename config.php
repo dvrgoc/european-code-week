@@ -87,6 +87,18 @@ function getProductForm($product = null){
 	return false;
 }
 
+function getDeleteForm($product){
+	?>
+	<form action="/products.php" method="post">
+		<input type="hidden" name="id" id="id" value="<?php ECHO $product['id'] ?>" />
+		<input type="hidden" name="action" id="action" value="delete" />
+
+		<p>Are you sure you want to delete this product? This cannot be undone</p>
+		<button type="submit" class="btn btn-primary">Delete Product</button>
+	</form>
+	<?php
+}
+
 function processProductData($connection, $data) {
 	if ($data['action'] === "create") {
 		$result = $connection->query(
@@ -95,9 +107,10 @@ function processProductData($connection, $data) {
 				"'.$data["short_description"].'",
 				"'.$data["price"].'",
 				'.(((float)($data["promo_price"]) > 0) ?
-					$data["promo_price"] :
-					"NULL")
-				);
+				$data["promo_price"] :
+				"NULL").'
+		        );'
+		);
 
 		if ($result) {
 			return '<p class="bg-success">Product created successfully</p>';
@@ -123,6 +136,16 @@ function processProductData($connection, $data) {
 			return '<p class="bg-success">Product updated successfully</p>';
 		} else {
 			return '<p class="bg-danger">Error updating product: '.$connection->error.'</p>';
+		}
+	}
+
+	if ($data['action'] === "delete") {
+		$result = $connection->query('DELETE FROM products WHERE id='.$data['id']);
+
+		if ($result) {
+			return '<p class="bg-success">Product deleted successfully</p>';
+		} else {
+			return '<p class="bg-danger">Error deleting product: '.$connection->error.'</p>';
 		}
 	}
 }
