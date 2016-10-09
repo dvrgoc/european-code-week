@@ -49,17 +49,17 @@ if (isset($_GET['id']) && !empty($_GET['id']) && is_numeric($_GET['id'])) {
 				<?php endif; ?>
 			</div>
 			<div role="tabpanel" class="tab-pane" id="new">
-				<?php getProductForm();?>
+				<?php getProductDataForm();?>
 			</div>
 			<?php else: ?>
 			<div role="tabpanel" class="tab-pane active" id="edit">
 				<?php if ($update_status): ?>
 					<?php echo $update_status; ?>
 				<?php endif ?>
-				<?php getProductForm($product);?>
+				<?php getProductDataForm($product);?>
 			</div>
 			<div role="tabpanel" class="tab-pane" id="delete">
-				<?php getDeleteForm($product) ?>
+				<?php getProductDeleteForm($product) ?>
 			</div>
 			<?php endif ?>
 		</div>
