@@ -1,3 +1,4 @@
+<hr>
 <?php
 
 $single_category = false;
@@ -13,8 +14,7 @@ if (isset($_GET['id']) && !empty($_GET['id']) && is_numeric($_GET['id'])) {
 	$category = getCategoryById($_GET['id']);
 }
 
-$categories = getAllCategories();
-?>
+$categories =getCategoryChildren(0); ?>
 
 <main class="col-sm-8">
 	<section>
@@ -36,19 +36,7 @@ $categories = getAllCategories();
 					<?php if ($update_status): ?>
 						<?php echo $update_status; ?>
 					<?php endif ?>
-					<?php
-
-					if ($categories): ?>
-						<ul>
-							<?php foreach ($categories as $category): ?>
-								<li>
-									<a href="?id=<?php echo $category['id'] ?>"><?php echo $category['title'] ?></a>
-								</li>
-							<?php endforeach; ?>
-						</ul>
-					<?php else: ?>
-						<p>No categories found.</p>
-					<?php endif; ?>
+					<?php showCategoryChildren($categories); ?>
 				</div>
 				<div role="tabpanel" class="tab-pane" id="new">
 					<?php getCategoryDataForm(null, $categories);?>

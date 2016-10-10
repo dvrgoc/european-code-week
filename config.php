@@ -1,5 +1,7 @@
 <?php
 //@TODO: create readme file
+// TODO: bugfix - http://european-code-week.loc/categories.php?id=2 - incorrect parent category is displayed
+// TODO: bugfix - http://european-code-week.loc/categories.php?id=2 - only root level items are displayed
 $config = array(
 	'default_timezone' => 'Europe/Zagreb'
 );
@@ -167,6 +169,52 @@ function getAllCategories() {
 	return false;
 }
 
+/*function getCategoryTree($category_id = 0){
+	$tree = getCategoryChildren($category_id);
+}*/
+
+function getCategoryChildren($parent_category_id) {
+	global $conn;
+
+	$categories = $conn->query('SELECT id, title FROM categories WHERE parent_cat_id = '.$parent_category_id.' ORDER BY title ASC');
+
+	$children = array();
+
+	$rows = mysqli_fetch_all($categories, MYSQLI_ASSOC);
+
+	if ($rows):
+		foreach ($rows as $row) :
+
+		array_push($children, array(
+			"id" => $row['id'],
+			"title" => $row['title'],
+			"children" => getCategoryChildren($row['id'])
+		));
+
+		endforeach;
+	endif;
+
+	return $children;
+}
+
+function showCategoryChildren($items) {
+	if ($items):
+		echo '<ul>';
+		foreach ($items as $item):
+			echo '<li>';
+			echo '<a href="//'.$_SERVER['SERVER_NAME'].$_SERVER['PHP_SELF'].'?id='.$item['id'].'">'.$item['title'].'</a>';
+			if ($item['children']) {
+				showCategoryChildren($item['children']);
+			}
+			echo '</li>';
+		endforeach;
+		echo '</ul>';
+	else:
+		echo "<p>no cats found</p>";
+	endif;
+}
+
+
 function getCategoryById($id) {
 	global $conn;
 	$result = $conn->query('SELECT * FROM categories where id = '.$id);
@@ -282,7 +330,6 @@ function processCategoryData($data) {
 	}
 
 	unset($_POST);
-	var_dump($_POST);
 }
 
 function getCategoryDeleteForm($category){
