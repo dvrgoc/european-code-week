@@ -4,13 +4,13 @@ $single_product = false;
 $update_status = false;
 
 if (isset($_POST) && !empty($_POST['action'])) {
-	$update_status = processProductData($conn, $_POST);
+	$update_status = processProductData($_POST);
 }
 
 if (isset($_GET['id']) && !empty($_GET['id']) && is_numeric($_GET['id'])) {
 	$single_product = true;
 
-	$product = getProductById($conn, $_GET['id']);
+	$product = getProductById($_GET['id']);
 }
 ?>
 
@@ -35,7 +35,7 @@ if (isset($_GET['id']) && !empty($_GET['id']) && is_numeric($_GET['id'])) {
 					<?php echo $update_status; ?>
 				<?php endif ?>
 				<?php
-				$products = getAllProducts($conn);
+				$products = getAllProducts();
 				if ($products): ?>
 					<ul>
 						<?php foreach ($products as $product): ?>

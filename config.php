@@ -1,7 +1,5 @@
 <?php
 //@TODO: create readme file
-//@TODO: refactor mysql connection variable - make $cnnct global in all product functions
-//@TODO: that is - remove it as an function argument
 $config = array(
 	'default_timezone' => 'Europe/Zagreb'
 );
@@ -29,14 +27,14 @@ function connect2db($credentials) {
 	return $connection;
 }
 
-$cnnct = connect2db($credentials);
-
-function disconnectFromDb($connection) {
-	mysqli_close($connection);
+function disconnectFromDb() {
+	global $conn;
+	mysqli_close($conn);
 }
 
-function getAllProducts($connection) {
-	$results = $connection->query('SELECT id, title FROM products ORDER BY title ASC ');
+function getAllProducts() {
+	global $conn;
+	$results = $conn->query('SELECT id, title FROM products ORDER BY title ASC ');
 
 	if($results->num_rows) {
 		/*var_dump("true");*/
@@ -46,8 +44,9 @@ function getAllProducts($connection) {
 	return false;
 }
 
-function getProductById($connection, $id) {
-	$result = $connection->query('SELECT * FROM products where id = '.$id);
+function getProductById($id) {
+	global $conn;
+	$result = $conn->query('SELECT * FROM products where id = '.$id);
 
 	if($result->num_rows) {
 		/*var_dump("true");*/
@@ -103,9 +102,10 @@ function getProductDeleteForm($product){
 	<?php
 }
 
-function processProductData($connection, $data) {
+function processProductData($data) {
+	global $conn;
 	if ($data['action'] === "create") {
-		$result = $connection->query(
+		$result = $conn->query(
 			'INSERT INTO products (title, short_description, price, promo_price) VALUES
 				("'.$data["title"].'",
 				"'.$data["short_description"].'",
@@ -119,12 +119,12 @@ function processProductData($connection, $data) {
 		if ($result) {
 			return '<p class="bg-success">Product created successfully</p>';
 		} else {
-			return '<p class="bg-danger">Error creating product: '.$connection->error.'</p>';
+			return '<p class="bg-danger">Error creating product: '.$conn->error.'</p>';
 		}
 	}
 
 	if ($data['action'] === "update") {
-		$result = $connection->query(
+		$result = $conn->query(
 			'UPDATE products set 
 				title="'.$data["title"].'",
 				short_description="'.$data["short_description"].'",
@@ -139,25 +139,25 @@ function processProductData($connection, $data) {
 		if ($result) {
 			return '<p class="bg-success">Product updated successfully</p>';
 		} else {
-			return '<p class="bg-danger">Error updating product: '.$connection->error.'</p>';
+			return '<p class="bg-danger">Error updating product: '.$conn->error.'</p>';
 		}
 	}
 
 	if ($data['action'] === "delete") {
-		$result = $connection->query('DELETE FROM products WHERE id='.$data['id']);
+		$result = $conn->query('DELETE FROM products WHERE id='.$data['id']);
 
 		if ($result) {
 			return '<p class="bg-success">Product deleted successfully</p>';
 		} else {
-			return '<p class="bg-danger">Error deleting product: '.$connection->error.'</p>';
+			return '<p class="bg-danger">Error deleting product: '.$conn->error.'</p>';
 		}
 	}
 }
 
 /* categories functions */
 function getAllCategories() {
-	global $cnnct;
-	$results = $cnnct->query('SELECT id, title FROM categories ORDER BY title ASC ');
+	global $conn;
+	$results = $conn->query('SELECT id, title FROM categories ORDER BY title ASC');
 
 	if($results->num_rows) {
 		/*var_dump("true");*/
@@ -168,8 +168,8 @@ function getAllCategories() {
 }
 
 function getCategoryById($id) {
-	global $cnnct;
-	$result = $cnnct->query('SELECT * FROM categories where id = '.$id);
+	global $conn;
+	$result = $conn->query('SELECT * FROM categories where id = '.$id);
 
 	if($result->num_rows) {
 		/*var_dump("true");*/
@@ -238,9 +238,9 @@ function getCategoryDataForm($category = null, $categories = null){
 }
 
 function processCategoryData($data) {
-	global $cnnct;
+	global $conn;
 	if ($data['action'] === "create") {
-		$result = $cnnct->query(
+		$result = $conn->query(
 			'INSERT INTO categories (title, short_description, parent_cat_id) VALUES
 				("'.$data["title"].'",
 				"'.$data["short_description"].'",
@@ -251,12 +251,12 @@ function processCategoryData($data) {
 		if ($result) {
 			return '<p class="bg-success">Category created successfully</p>';
 		} else {
-			return '<p class="bg-danger">Error creating category: '.$cnnct->error.'</p>';
+			return '<p class="bg-danger">Error creating category: '.$conn->error.'</p>';
 		}
 	}
 
 	if ($data['action'] === "update") {
-			$result = $cnnct->query(
+			$result = $conn->query(
 				'UPDATE categories set
 					title="'.$data["title"].'",
 					short_description="'.$data["short_description"].'",
@@ -267,17 +267,17 @@ function processCategoryData($data) {
 			if ($result) {
 				return '<p class="bg-success">Category updated successfully</p>';
 			} else {
-				return '<p class="bg-danger">Error updating category: '.$cnnct->error.'</p>';
+				return '<p class="bg-danger">Error updating category: '.$conn->error.'</p>';
 			}
 		}
 
 	if ($data['action'] === "delete") {
-		$result = $cnnct->query('DELETE FROM categories WHERE id='.$data['id']);
+		$result = $conn->query('DELETE FROM categories WHERE id='.$data['id']);
 
 		if ($result) {
 			return '<p class="bg-success">Category deleted successfully</p>';
 		} else {
-			return '<p class="bg-danger">Error deleting category: '.$cnnct->error.'</p>';
+			return '<p class="bg-danger">Error deleting category: '.$conn->error.'</p>';
 		}
 	}
 
