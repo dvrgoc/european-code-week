@@ -19,10 +19,14 @@
 <body class="container-fluid">
 	<header class="row">
 		<div class="container">
-			<a class="logo" href="/" title="Logo">
-				<img src="images/codeweekeu.png" alt="Europe Code Week"/>
-			</a>
+			<div class="v-align-parent">
+				<a class="logo text-left v-align-child" href="/" title="Logo">
+					<img src="images/codeweekeu.png" alt="Europe Code Week"/>
+				</a>
+				<span class="text-right v-align-child" id="now"></span>
+			</div>
 		</div>
+
 		<nav class="container">
 			<ul class="nav nav-pills">
 				<li<?php echo (strpos($_SERVER["SCRIPT_NAME"], "index.php") !== false) ? ' class="active"' : '' ?>>

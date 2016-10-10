@@ -2,9 +2,16 @@ header, main, sidebar, footer, .tab-content {
     padding: 1em 0;
 }
 
-.logo {
-    display: inline-block;
-    padding: 1em 0;
+.v-align-parent {
+    display: inline-table;
+    width: 100%;
+    vertical-align: middle;
+}
+
+.v-align-child{
+    display: table-cell;
+    width: 50%;
+    vertical-align: middle;
 }
 
 /* sticky footer */
