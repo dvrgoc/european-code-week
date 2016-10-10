@@ -10,6 +10,7 @@ function startTime() {
     var hours = today.getHours();
     var minutes = today.getMinutes();
     var seconds = today.getSeconds();
+    hours = checkTime(hours);
     minutes = checkTime(minutes);
     seconds = checkTime(seconds);
     jQuery('#now').text(day + ". " + month + ". " + year + ". " + hours + ":" + minutes + ":" + seconds);

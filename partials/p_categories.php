@@ -1,4 +1,3 @@
-<hr>
 <?php
 
 $single_category = false;
