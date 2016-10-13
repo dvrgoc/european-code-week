@@ -14,7 +14,7 @@ if (isset($_GET['id']) && !empty($_GET['id']) && is_numeric($_GET['id'])) {
 }
 ?>
 
-<main class="col-sm-8">
+<main class="<?php echo $config['grid']['main'] ?>">
 	<section>
 		<!-- Nav tabs -->
 		<ul class="nav nav-tabs" role="tablist">

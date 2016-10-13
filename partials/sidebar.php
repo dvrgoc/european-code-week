@@ -1,12 +1,13 @@
-<sidebar class="col-sm-4">
-	<ul>
-		<li><p>Parent Category</p></li>
+<sidebar class="<?php echo $config['grid']['sidebar'] ?>">
+	<ul class="sidebar-list center-block">
+		<li><a href="https://inchoo.hr" title="Inchoo">
+				<img src="images/inchoo.png" alt="inchoo.hr">
+			</a>
+		</li>
 		<li>
-			<p>Parent Category</p>
-			<ul>
-				<li><p>Child Category</p></li>
-				<li><p>Child Category</p></li>
-			</ul>
+			<a href="http://elpros.net/" title="Elektrotehnicka i prometna skola Osijek">
+				<img src="images/elpros.png" alt="elpros.hr">
+			</a>
 		</li>
 	</ul>
 </sidebar>

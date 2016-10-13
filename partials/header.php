@@ -38,7 +38,6 @@
 				<li<?php echo (strpos($_SERVER["SCRIPT_NAME"], "products.php") !== false)  ? ' class="active"' : '' ?>>
 					<a href="<?php $_SERVER["SERVER_NAME"] ?>/products.php">Products</a>
 				</li>
-				<li><a href="#">Search</a></li>
 			</ul>
 		</nav>
 	</header>
