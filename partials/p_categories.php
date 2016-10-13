@@ -13,7 +13,10 @@ if (isset($_GET['id']) && !empty($_GET['id']) && is_numeric($_GET['id'])) {
 	$category = getCategoryById($_GET['id']);
 }
 
-$categories =getCategoryChildren(0); ?>
+$categories = getCategoryTree(0);
+
+$categories_all = getAllCategories();
+?>
 
 <main class="col-sm-8">
 	<section>
@@ -35,17 +38,17 @@ $categories =getCategoryChildren(0); ?>
 					<?php if ($update_status): ?>
 						<?php echo $update_status; ?>
 					<?php endif ?>
-					<?php showCategoryChildren($categories); ?>
+					<?php showCategoryTree($categories); ?>
 				</div>
 				<div role="tabpanel" class="tab-pane" id="new">
-					<?php getCategoryDataForm(null, $categories);?>
+					<?php getCategoryDataForm(null, $categories_all);?>
 				</div>
 			<?php else: ?>
 				<div role="tabpanel" class="tab-pane active" id="edit">
 					<?php if ($update_status): ?>
 						<?php echo $update_status; ?>
 					<?php endif ?>
-					<?php getCategoryDataForm($category, $categories);?>
+					<?php getCategoryDataForm($category, $categories_all);?>
 				</div>
 				<div role="tabpanel" class="tab-pane" id="delete">
 					<?php getCategoryDeleteForm($category) ?>

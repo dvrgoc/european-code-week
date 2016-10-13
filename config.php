@@ -1,7 +1,6 @@
 <?php
 //@TODO: create readme file
-// TODO: bugfix - http://european-code-week.loc/categories.php?id=2 - incorrect parent category is displayed
-// TODO: bugfix - http://european-code-week.loc/categories.php?id=2 - only root level items are displayed
+
 $config = array(
 	'default_timezone' => 'Europe/Zagreb'
 );
@@ -159,7 +158,7 @@ function processProductData($data) {
 /* categories functions */
 function getAllCategories() {
 	global $conn;
-	$results = $conn->query('SELECT id, title FROM categories ORDER BY title ASC');
+	$results = $conn->query('SELECT id, title, parent_cat_id FROM categories ORDER BY title ASC');
 
 	if($results->num_rows) {
 		/*var_dump("true");*/
@@ -169,11 +168,7 @@ function getAllCategories() {
 	return false;
 }
 
-/*function getCategoryTree($category_id = 0){
-	$tree = getCategoryChildren($category_id);
-}*/
-
-function getCategoryChildren($parent_category_id) {
+function getCategoryTree($parent_category_id) {
 	global $conn;
 
 	$categories = $conn->query('SELECT id, title FROM categories WHERE parent_cat_id = '.$parent_category_id.' ORDER BY title ASC');
@@ -188,7 +183,7 @@ function getCategoryChildren($parent_category_id) {
 		array_push($children, array(
 			"id" => $row['id'],
 			"title" => $row['title'],
-			"children" => getCategoryChildren($row['id'])
+			"children" => getCategoryTree($row['id'])
 		));
 
 		endforeach;
@@ -197,20 +192,20 @@ function getCategoryChildren($parent_category_id) {
 	return $children;
 }
 
-function showCategoryChildren($items) {
+function showCategoryTree($items) {
 	if ($items):
 		echo '<ul>';
 		foreach ($items as $item):
 			echo '<li>';
 			echo '<a href="//'.$_SERVER['SERVER_NAME'].$_SERVER['PHP_SELF'].'?id='.$item['id'].'">'.$item['title'].'</a>';
 			if ($item['children']) {
-				showCategoryChildren($item['children']);
+				showCategoryTree($item['children']);
 			}
 			echo '</li>';
 		endforeach;
 		echo '</ul>';
 	else:
-		echo "<p>no cats found</p>";
+		echo "<p>No categories found</p>";
 	endif;
 }
 
@@ -253,11 +248,10 @@ function getCategoryDataForm($category = null, $categories = null){
 					<?php
 				foreach ($categories as $category_item): ?>
 					<option value="<?php echo $category_item['id'] ?>"
-						<?php if ($category['id'] === $category_item['id']):?>
-						selected="selected"
+						<?php if ($category['parent_cat_id'] === $category_item['id']):?>
+						selected="selected">
 						<?php $parent_cat = getCategoryById($category['parent_cat_id']) ?>
-						><?php echo $parent_cat['title'] ?>
-
+							<?php echo $parent_cat['title'] ?>
 						<?php else: ?>
 							><?php echo $category_item['title'] ?>
 						<?php endif ?>
