@@ -5,7 +5,8 @@ $config = array(
 	'default_timezone' => 'Europe/Zagreb',
 	'grid' => array(
 		'sidebar'   => 'col-sm-3 col-md-2',
-		'main'      => 'col-sm-9 col-md-10'
+		'main'      => 'col-sm-9 col-md-10',
+		'homepage'  => 'col-xs-12'
 	)
 );
 

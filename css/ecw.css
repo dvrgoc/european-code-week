@@ -2,6 +2,10 @@
 header, main, sidebar, footer, .tab-content {
     padding: 1em 0;
 }
+
+h1, h2, h3, h4, h5, h6 {
+    text-align: center;
+}
 /* global styling - end */
 
 /* helper classes - start */
@@ -9,7 +13,6 @@ header, main, sidebar, footer, .tab-content {
     display: inline-table;
     width: 100%;
     vertical-align: middle;
-    border-bottom: 1px solid #337ab7;
     margin-bottom: 1em;
 }
 
@@ -19,6 +22,34 @@ header, main, sidebar, footer, .tab-content {
     vertical-align: middle;
 }
 /* helper classes - end */
+
+/* logos list - start */
+.logos-list {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    text-align: center;
+}
+
+.logos-list li {
+    display: inline-block;
+    width: 20%;
+}
+
+.logos-list li a {
+    display: inline-block;
+    text-decoration: none;
+}
+
+.logos-list li img {
+    width: 100%;
+    max-width: 100px;
+    max-height: 100px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+/* logos list - end */
 
 /* sidebar - start */
 .sidebar-list {
