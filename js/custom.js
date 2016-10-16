@@ -14,7 +14,7 @@ function startTime() {
     minutes = checkTime(minutes);
     seconds = checkTime(seconds);
     jQuery('#now').text(day + ". " + month + ". " + year + ". " + hours + ":" + minutes + ":" + seconds);
-    var t = setTimeout(startTime, 500);
+    var t = setTimeout(startTime, 1000);
 }
 function checkTime(i) {
     if (i < 10) {

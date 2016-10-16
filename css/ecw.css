@@ -8,6 +8,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 /* global styling - end */
 
+/* logo - start */
+.logo img {
+    max-width: 100%;
+}
+/* logo - end */
+
 /* helper classes - start */
 .v-align-parent {
     display: inline-table;
@@ -26,14 +32,14 @@ h1, h2, h3, h4, h5, h6 {
 /* logos list - start */
 .logos-list {
     padding: 0;
-    margin: 0;
+    margin: 2em 0 0;
     list-style-type: none;
     text-align: center;
 }
 
 .logos-list li {
     display: inline-block;
-    width: 20%;
+    width: 30%;
 }
 
 .logos-list li a {
