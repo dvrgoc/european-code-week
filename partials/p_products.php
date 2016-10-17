@@ -29,7 +29,7 @@ if (isset($_GET['id']) && !empty($_GET['id']) && is_numeric($_GET['id'])) {
 			</li>
 			<?php else: ?>
 			<li role="presentation" class="active">
-				<a href="#edit" aria-controls="edit" role="tab" data-toggle="tab">Edit Prouduct</a>
+				<a href="#edit" aria-controls="edit" role="tab" data-toggle="tab">Edit Product</a>
 			</li>
 			<li role="presentation">
 				<a href="#delete" aria-controls="delete" role="tab" data-toggle="tab">Delete Product</a>
