@@ -11,6 +11,8 @@ if (isset($_GET['id']) && !empty($_GET['id']) && is_numeric($_GET['id'])) {
 	$single_category = true;
 
 	$category_single = getCategoryById($_GET['id']);
+} else {
+	die("Invalid category ID: [id, ".$_GET['id']."]");
 }
 
 $categories_root = getCategoryTree(0);

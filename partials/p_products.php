@@ -11,6 +11,8 @@ if (isset($_GET['id']) && !empty($_GET['id']) && is_numeric($_GET['id'])) {
 	$single_product = true;
 
 	$product_single = getProductById($_GET['id']);
+} else {
+	die("Invalid product ID: [id, ".$_GET['id']."]");
 }
 ?>
 
