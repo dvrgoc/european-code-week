@@ -63,7 +63,7 @@ function getProductById($id) {
 
 function getProductDataForm($product = null){
 	?>
-	<form action="/products.php<?php echo $product ? '?id='.$product['id'] : ''  ?>" method="post">
+	<form id="form-products-data" action="/products.php<?php echo $product ? '?id='.$product['id'] : ''  ?>" method="post">
 		<input type="hidden" name="id" id="id" value="<?php echo $product ? $product['id'] : "" ?>" />
 		<input type="hidden" name="action" id="action" value="<?php echo $product ? "update" : "create" ?>" />
 
@@ -97,7 +97,7 @@ function getProductDataForm($product = null){
 
 function getProductDeleteForm($product){
 	?>
-	<form action="/products.php" method="post">
+	<form  id="form-products-delete" action="/products.php" method="post">
 		<input type="hidden" name="id" id="id" value="<?php ECHO $product['id'] ?>" />
 		<input type="hidden" name="action" id="action" value="delete" />
 
@@ -228,7 +228,7 @@ function getCategoryById($id) {
 
 function getCategoryDataForm($category = null, $categories = null){
 	?>
-	<form action="/categories.php<?php echo $category ? '?id='.$category['id'] : ''  ?>" method="post">
+	<form id="form-categories-data" action="/categories.php<?php echo $category ? '?id='.$category['id'] : ''  ?>" method="post">
 		<input type="hidden" name="id" id="id" value="<?php echo $category ? $category['id'] : "" ?>" />
 		<input type="hidden" name="action" id="action" value="<?php echo $category ? "update" : "create" ?>" />
 
@@ -332,7 +332,7 @@ function processCategoryData($data) {
 
 function getCategoryDeleteForm($category){
 	?>
-	<form action="/categories.php" method="post">
+	<form id="form-category-data" action="/categories.php" method="post">
 		<input type="hidden" name="id" id="id" value="<?php echo $category['id'] ?>" />
 		<input type="hidden" name="action" id="action" value="delete" />
 
