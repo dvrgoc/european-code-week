@@ -10,7 +10,7 @@ if (isset($_POST) && !empty($_POST['action'])) {
 if (isset($_GET['id']) && !empty($_GET['id']) && is_numeric($_GET['id'])) {
 	$single_product = true;
 
-	$product = getProductById($_GET['id']);
+	$product_single = getProductById($_GET['id']);
 }
 ?>
 
@@ -19,11 +19,19 @@ if (isset($_GET['id']) && !empty($_GET['id']) && is_numeric($_GET['id'])) {
 		<!-- Nav tabs -->
 		<ul class="nav nav-tabs" role="tablist">
 			<?php if (!$single_product): ?>
-			<li role="presentation" class="active"><a href="#list" aria-controls="list" role="tab" data-toggle="tab">List All Products</a></li>
-			<li role="presentation"><a href="#new" aria-controls="new" role="tab" data-toggle="tab">New Product</a></li>
+			<li role="presentation" class="active">
+				<a href="#list" aria-controls="list" role="tab" data-toggle="tab">List All Products</a>
+			</li>
+			<li role="presentation">
+				<a href="#new" aria-controls="new" role="tab" data-toggle="tab">New Product</a>
+			</li>
 			<?php else: ?>
-			<li role="presentation" class="active"><a href="#edit" aria-controls="edit" role="tab" data-toggle="tab">Edit Prouduct</a></li>
-			<li role="presentation"><a href="#delete" aria-controls="delete" role="tab" data-toggle="tab">Delete Product</a></li>
+			<li role="presentation" class="active">
+				<a href="#edit" aria-controls="edit" role="tab" data-toggle="tab">Edit Prouduct</a>
+			</li>
+			<li role="presentation">
+				<a href="#delete" aria-controls="delete" role="tab" data-toggle="tab">Delete Product</a>
+			</li>
 			<?php endif ?>
 		</ul>
 
@@ -56,10 +64,10 @@ if (isset($_GET['id']) && !empty($_GET['id']) && is_numeric($_GET['id'])) {
 				<?php if ($update_status): ?>
 					<?php echo $update_status; ?>
 				<?php endif ?>
-				<?php getProductDataForm($product);?>
+				<?php getProductDataForm($product_single);?>
 			</div>
 			<div role="tabpanel" class="tab-pane" id="delete">
-				<?php getProductDeleteForm($product) ?>
+				<?php getProductDeleteForm($product_single) ?>
 			</div>
 			<?php endif ?>
 		</div>

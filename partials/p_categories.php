@@ -10,12 +10,12 @@ if (isset($_POST) && !empty($_POST['action'])) {
 if (isset($_GET['id']) && !empty($_GET['id']) && is_numeric($_GET['id'])) {
 	$single_category = true;
 
-	$category = getCategoryById($_GET['id']);
+	$category_single = getCategoryById($_GET['id']);
 }
 
-$categories = getCategoryTree(0);
+$categories_root = getCategoryTree(0);
 
-$categories_all = getAllCategories();
+$categories_list = getAllCategories();
 ?>
 
 <main class="<?php echo $config['grid']['main'] ?>">
@@ -23,11 +23,19 @@ $categories_all = getAllCategories();
 		<!-- Nav tabs -->
 		<ul class="nav nav-tabs" role="tablist">
 			<?php if (!$single_category): ?>
-				<li role="presentation" class="active"><a href="#list" aria-controls="list" role="tab" data-toggle="tab">List All Categories</a></li>
-				<li role="presentation"><a href="#new" aria-controls="new" role="tab" data-toggle="tab">New Category</a></li>
+				<li role="presentation" class="active">
+					<a href="#list" aria-controls="list" role="tab" data-toggle="tab">List All Categories</a>
+				</li>
+				<li role="presentation">
+					<a href="#new" aria-controls="new" role="tab" data-toggle="tab">New Category</a>
+				</li>
 			<?php else: ?>
-				<li role="presentation" class="active"><a href="#edit" aria-controls="edit" role="tab" data-toggle="tab">Edit Category</a></li>
-				<li role="presentation"><a href="#delete" aria-controls="delete" role="tab" data-toggle="tab">Delete Category</a></li>
+				<li role="presentation" class="active">
+					<a href="#edit" aria-controls="edit" role="tab" data-toggle="tab">Edit Category</a>
+				</li>
+				<li role="presentation">
+					<a href="#delete" aria-controls="delete" role="tab" data-toggle="tab">Delete Category</a>
+				</li>
 			<?php endif ?>
 		</ul>
 
@@ -38,20 +46,20 @@ $categories_all = getAllCategories();
 					<?php if ($update_status): ?>
 						<?php echo $update_status; ?>
 					<?php endif ?>
-					<?php showCategoryTree($categories); ?>
+					<?php showCategoryTree($categories_root); ?>
 				</div>
 				<div role="tabpanel" class="tab-pane" id="new">
-					<?php getCategoryDataForm(null, $categories_all);?>
+					<?php getCategoryDataForm(null, $categories_list);?>
 				</div>
 			<?php else: ?>
 				<div role="tabpanel" class="tab-pane active" id="edit">
 					<?php if ($update_status): ?>
 						<?php echo $update_status; ?>
 					<?php endif ?>
-					<?php getCategoryDataForm($category, $categories_all);?>
+					<?php getCategoryDataForm($category_single, $categories_list);?>
 				</div>
 				<div role="tabpanel" class="tab-pane" id="delete">
-					<?php getCategoryDeleteForm($category) ?>
+					<?php getCategoryDeleteForm($category_single) ?>
 				</div>
 			<?php endif ?>
 		</div>
