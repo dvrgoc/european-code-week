@@ -1,5 +1,4 @@
 <?php
-//@TODO: create readme file
 
 $config = array(
 	'default_timezone' => 'Europe/Zagreb',
