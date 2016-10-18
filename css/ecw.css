@@ -1,0 +1,8 @@
+header, main, sidebar, footer {
+    padding: 1em 0;
+}
+
+.logo {
+    display: inline-block;
+    padding: 1em 0;
+}
