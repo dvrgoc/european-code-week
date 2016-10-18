@@ -1,8 +1,131 @@
-header, main, sidebar, footer {
+/* global styling - start */
+header, main, sidebar, footer, .tab-content {
     padding: 1em 0;
 }
 
-.logo {
-    display: inline-block;
-    padding: 1em 0;
+h1, h2, h3, h4, h5, h6 {
+    text-align: center;
 }
+/* global styling - end */
+
+/* logo - start */
+.logo img {
+    max-width: 100%;
+}
+/* logo - end */
+
+/* helper classes - start */
+.v-align-parent {
+    display: inline-table;
+    width: 100%;
+    vertical-align: middle;
+    margin-bottom: 1em;
+}
+
+.v-align-child{
+    display: table-cell;
+    width: 50%;
+    vertical-align: middle;
+}
+/* helper classes - end */
+
+/* logos list - start */
+.logos-list {
+    padding: 0;
+    margin: 2em 0 0;
+    list-style-type: none;
+    text-align: center;
+}
+
+.logos-list li {
+    display: inline-block;
+    width: 30%;
+}
+
+.logos-list li a {
+    display: inline-block;
+    text-decoration: none;
+}
+
+.logos-list li img {
+    width: 100%;
+    max-width: 100px;
+    max-height: 100px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+/* logos list - end */
+
+/* sidebar - start */
+.sidebar-list {
+    padding: 0;
+    margin: 0;
+
+    list-style-type: none;
+    text-align: center;
+}
+
+.sidebar-list li {
+    display: inline-block;
+}
+
+.sidebar-list img {
+    max-width: 120px;
+    width: 100%;
+    margin: 0 auto;
+    display: block;
+}
+/* sidebar - end */
+
+/* notification messages - start */
+p[class^="bg-"] {
+    padding: 1em;
+    margin: 1em 0;
+}
+/* notification messages - end */
+
+/* sticky footer - start */
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    /* Margin bottom by footer height */
+    margin-bottom: 140px;
+}
+
+header {
+    background-color: #f5f5f5;
+    box-shadow: 0 0px 3px 3px rgba(0,0,0,0.2);
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 140px;
+    background-color: #f5f5f5;
+    box-shadow: 0 0px 3px 3px rgba(0,0,0,0.2);
+}
+
+@media all and (min-width: 768px) {
+    body {
+        margin-bottom: 80px;
+    }
+
+    footer {
+        height: 80px;
+    }
+}
+@media all and (min-width: 992px) {
+    body {
+        margin-bottom: 50px;
+    }
+
+    footer {
+        height: 50px;
+    }
+}
+/* sticky footer - end */
